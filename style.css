@@ -1,0 +1,33 @@
+/* build grid */
+/* to create anything inside the grid, flex-wrap is important */
+/* for 28 squares by 28 squares
+  grid will be 20 by 20 px
+  so 20 * 28 = 560 px
+*/
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 560px;
+  height: 560px;
+  border: solid black;
+}
+
+.grid div {
+  width: 20px;
+  height: 20px;
+}
+
+.pac-dot {
+  background-color: green;
+  border: 5px solid white;
+  box-sizing: border-box;
+}
+
+.wall {
+  background-color: blue;
+}
+
+.power-pellet {
+  background-color: yellow;
+  border-radius: 10px;
+}
