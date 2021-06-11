@@ -75,9 +75,38 @@ createBoard()
 
 
 
+// starting position of pac-man -> passing through the number into the square array
 
+let pacmanCurrentIndex = 490
+// adding class to the number 490
+squares[pacmanCurrentIndex].classList.add('pac-man')
 
+// pac-man on the move
+function movePacman(e) {
 
+    square[pacmanCurrentIndex].classList.remove('pac-man')
+    // use switch cases add movements to  each arrow key pressed on the key board
+    switch (e.keyCode) {
+
+      case : 37
+        if(pacmanCurrentIndex % width !== 0)  pacmanCurrentIndex--
+        break;
+
+      case : 38
+        if(pacmanCurrentIndex - width >= 0 )  pacmanCurrentIndex -= width
+        break
+
+      case : 39
+        if(pacmanCurrentIndex % width < width - 1)  pacmanCurrentIndex++
+        break
+        
+      case : 40
+        if(pacmanCurrentIndex + width < width * width)  pacmanCurrentIndex += width
+        break
+    }
+
+    squares[pacmanCurrentIndex].classList.add('pac-man')
+}
 
 
 
