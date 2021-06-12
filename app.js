@@ -89,19 +89,21 @@ function movePacman(e) {
     switch (e.keyCode) {
 
       case : 37
-        if(pacmanCurrentIndex % width !== 0)  pacmanCurrentIndex--
+        // pacmanCurrentIndex is divisible by width & doesn't have a remainder,
+        // pacmanCurrentIndex-1 doesnt include a wall, move pacman down by 1 idx
+        if(pacmanCurrentIndex % width !== 0 && !squares[pacmanCurrentIndex - 1].classList.contains('wall'))  pacmanCurrentIndex--
         break;
 
       case : 38
-        if(pacmanCurrentIndex - width >= 0 )  pacmanCurrentIndex -= width
+        if(pacmanCurrentIndex - width >= 0 && !squares[pacmanCurrentIndex - width].classList.contains('wall'))  pacmanCurrentIndex -= width
         break
 
       case : 39
-        if(pacmanCurrentIndex % width < width - 1)  pacmanCurrentIndex++
+        if(pacmanCurrentIndex % width < width - 1 && !squares[pacmanCurrentIndex + 1].classList.contains('wall'))  pacmanCurrentIndex++
         break
-        
+
       case : 40
-        if(pacmanCurrentIndex + width < width * width)  pacmanCurrentIndex += width
+        if(pacmanCurrentIndex + width < width * width && !squares[pacmanCurrentIndex + width].classList.contains('wall'))  pacmanCurrentIndex += width
         break
     }
 
@@ -109,7 +111,7 @@ function movePacman(e) {
 }
 
 
-
+document.addEventListener('keyup', movePacman)
 
 
 
