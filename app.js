@@ -65,6 +65,9 @@ function createBoard(){
       // repeat for items wall & power-pellet
       squares[i].classList.add('wall')
 
+    }else if(layout[i] === 2){
+      squares[i].classList.add('ghost-lair')
+
     }else if (layout[i] === 3) {
 
       squares[i].classList.add('power-pellet')
@@ -91,19 +94,36 @@ function movePacman(e) {
       case : 37
         // pacmanCurrentIndex is divisible by width & doesn't have a remainder,
         // pacmanCurrentIndex-1 doesnt include a wall, move pacman down by 1 idx
-        if(pacmanCurrentIndex % width !== 0 && !squares[pacmanCurrentIndex - 1].classList.contains('wall'))  pacmanCurrentIndex--
+        if(pacmanCurrentIndex % width !== 0
+            && !squares[pacmanCurrentIndex - 1].classList.contains('wall')
+            && !squares[pacmanCurrentIndex - 1].classList.contains('ghost-lair'))  pacmanCurrentIndex--
+
+        if(pacmanCurrentIndex - 1 === 363){
+          pacmanCurrentIndex = 391
+        }
         break;
 
       case : 38
-        if(pacmanCurrentIndex - width >= 0 && !squares[pacmanCurrentIndex - width].classList.contains('wall'))  pacmanCurrentIndex -= width
+        if(pacmanCurrentIndex - width >= 0
+          && !squares[pacmanCurrentIndex - width].classList.contains('wall')
+          && !squares[pacmanCurrentIndex - width].classList.contains('ghost-lair'))  pacmanCurrentIndex -= width
         break
 
       case : 39
-        if(pacmanCurrentIndex % width < width - 1 && !squares[pacmanCurrentIndex + 1].classList.contains('wall'))  pacmanCurrentIndex++
+        if(pacmanCurrentIndex % width < width - 1
+            && !squares[pacmanCurrentIndex + 1].classList.contains('wall')
+            && !squares[pacmanCurrentIndex - width].classList.contains('ghost-lair'))  pacmanCurrentIndex++
+
+        if(pacmanCurrentIndex + 1 === 392){
+          pacmanCurrentIndex = 364
+        }
+
         break
 
       case : 40
-        if(pacmanCurrentIndex + width < width * width && !squares[pacmanCurrentIndex + width].classList.contains('wall'))  pacmanCurrentIndex += width
+        if(pacmanCurrentIndex + width < width * width
+            && !squares[pacmanCurrentIndex + width].classList.contains('wall')
+            && !squares[pacmanCurrentIndex - width].classList.contains('ghost-lair'))  pacmanCurrentIndex += width
         break
     }
 
